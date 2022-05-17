@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FileConverterCZ.model
 {
     class ProccessFile
     {
-        public bool processFileOutput(List<ModelFile> modelFiles) {
+        public bool processFileOutput(List<ModelFile> modelFiles)
+        {
             bool proccesFile = false;
             var file = @"C:\Cizaro Work\loadfilesImages\output\output.csv";
 
-            if   (File.Exists(file)) File.Delete(file);
+            if (File.Exists(file)) File.Delete(file);
 
             using (var stream = File.CreateText(file))
             {

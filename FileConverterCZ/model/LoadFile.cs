@@ -1,11 +1,8 @@
 ﻿using Microsoft.VisualBasic.FileIO;
-using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FileConverterCZ.model
 {
@@ -21,7 +18,7 @@ namespace FileConverterCZ.model
             {
                 string path = moveFile();
                 var parser = new TextFieldParser(new StringReader(File.ReadAllText(path)))
-                    {
+                {
                     HasFieldsEnclosedInQuotes = true,
                     Delimiters = new string[] { "," },
                     TrimWhiteSpace = true
@@ -46,10 +43,11 @@ namespace FileConverterCZ.model
             }
         }
 
-        public string moveFile() {
+        public string moveFile()
+        {
             var dt = DateTime.Now;
             string initialPath = "C:\\Cizaro Work\\loadfilesImages\\src\\gvtocsv.csv";
-            Console.WriteLine("Cargando desde "+initialPath);
+            Console.WriteLine("Cargando desde " + initialPath);
             string formattedDate = dt.ToString("ddMMyyyyhhmmss");
             Console.WriteLine(formattedDate);
             string finalPath = initialPath.Replace("gvtocsv", "gvtocsv" + formattedDate);
@@ -62,6 +60,6 @@ namespace FileConverterCZ.model
             return finalPath;
         }
 
-       
+
     }
 }
