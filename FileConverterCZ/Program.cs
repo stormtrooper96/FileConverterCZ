@@ -14,7 +14,7 @@ namespace FileConverterCZ
             p.processFileOutput(  l.processDuplicate(l.transformfiletoReadable()));
             Console.WriteLine("Start processes to write file only products");
             p.processFileOutput(r.TransformFile(l.transformfiletoReadable()));
-            Console.ReadKey();
+        
 
         }
     }
