@@ -28,6 +28,27 @@ namespace FileConverterCZ.model
                 proccesFile = true;
             }
             return proccesFile;
+
+        }
+        public bool processFileOutput(List<string> modelFiles)
+        {
+            bool proccesFile = false;
+            var file = @"C:\Cizaro Work\loadfilesImages\output\outputProductsOnly.csv";
+
+            if (File.Exists(file)) File.Delete(file);
+
+            using (var stream = File.CreateText(file))
+            {
+                for (int i = 0; i < modelFiles.Count(); i++)
+                {
+ 
+                    string csvRow =  modelFiles[i];
+
+                    stream.WriteLine(csvRow);
+                }
+                proccesFile = true;
+            }
+            return proccesFile;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 
@@ -37,11 +38,50 @@ namespace FileConverterCZ.model
                 var formattedCsvToSave = String.Join(Environment.NewLine, csvSplitList.Select(x => x));
                 path = path.Replace(".csv", "_01.csv");
                 // Write single string to file
-                File.WriteAllText(@path, formattedCsvToSave);
+                File.WriteAllText(@path, formattedCsvToSave,System.Text.Encoding.UTF8);
                 parser.Close();
                 return path;
             }
         }
+        public List<string> processDuplicate(string file) {
+            var dictionary = new List<string>();
+            var dictionary2 = new List<string>();
+            var dictionary3 = new List<string>();
+            using (var rd = new StreamReader(file))
+  {
+                while (!rd.EndOfStream)
+                {
+                    var splits = rd.ReadLine().Split('|');
+              
+                        dictionary.Add(splits[0]);
+            
+               }
+           }
+            dictionary = dictionary.Distinct().ToList();
+
+            using (var rd2 = new StreamReader(file))
+            {
+                while (!rd2.EndOfStream)
+                {
+      
+                   dictionary2.Add(rd2.ReadLine());
+
+                }
+            }
+            for (int i = 0; i < dictionary.Count; i++)
+            {
+              string value = dictionary2.Find(element => element.StartsWith(dictionary[i]));
+
+                dictionary3.Add(value);
+
+
+            }
+                  int c = dictionary3.Count;
+            return dictionary3;
+
+        }
+
+
 
         public string moveFile()
         {
