@@ -47,17 +47,8 @@ namespace FileConverterCZ.model
             var dictionary = new List<string>();
             var dictionary2 = new List<string>();
             var dictionary3 = new List<string>();
-            using (var rd = new StreamReader(file))
-  {
-                while (!rd.EndOfStream)
-                {
-                    var splits = rd.ReadLine().Split('|');
-              
-                        dictionary.Add(splits[0]);
-            
-               }
-           }
-            dictionary = dictionary.Distinct().ToList();
+
+         
 
             using (var rd2 = new StreamReader(file))
             {
@@ -68,9 +59,9 @@ namespace FileConverterCZ.model
 
                 }
             }
-            for (int i = 0; i < dictionary.Count; i++)
+            for (int i = 0; i < dictionary2.Count; i++)
             {
-              string value = dictionary2.Find(element => element.StartsWith(dictionary[i]));
+              string value = dictionary2[i];
 
                 dictionary3.Add(value);
 
